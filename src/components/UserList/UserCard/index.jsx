@@ -2,6 +2,7 @@ const UserCard = (props) => {
   const {
     user: { id, firstname, lastname },
   } = props;
+  
 
   return (
     <article>
