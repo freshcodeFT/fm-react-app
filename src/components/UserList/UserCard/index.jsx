@@ -1,17 +1,17 @@
 function UserCard(props) {
   const {
-    user: { id, firstname, lastname },
+    user: { id, firstname, lastname, isSelected },
     toggleUserSelection,
   } = props;
 
   const handleClick = () => {
-    console.log(props);
-    console.log(1);
     toggleUserSelection(id);
   };
-
+  const style = {
+    border: isSelected ? "5px solid black" : undefined,
+  };
   return (
-    <article onClick={handleClick}>
+    <article onClick={handleClick} style={style}>
       <p>ID: {id}</p>
       <h1>
         User Name: {firstname} {lastname}
