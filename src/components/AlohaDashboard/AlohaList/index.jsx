@@ -1,6 +1,7 @@
 import Aloha from "../Aloha";
 
 function AlohaList({ users }) {
+  
   const createUserGreetings = (users) =>
     users.map(({id, firstname, lastname }, index) => (
       <li key={id}>

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import SortedAlohaList from "../SortedAlohaList";
+import SortedAlohaList from "./SortedAlohaList";
 
 class AlohaDashboard extends Component {
   constructor(props) {
@@ -47,3 +47,8 @@ class AlohaDashboard extends Component {
 }
 
 export default AlohaDashboard;
+
+/*
+  Реализовать функционал удаления приветствия с каким-то пользователем.
+  Для удаления объекта пользователя из массива можно использовать filter.
+*/
