@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Button from "../Button";
 import Controls from "./Controls";
 import TimerDisplay from "./TimerDisplay";
+import style from './Timer.module.css';
+console.log(style);
 
 class Timer extends Component {
   constructor(props) {
@@ -113,7 +115,7 @@ class Timer extends Component {
     const { name = "Timer" } = this.props;
     const { currentTime, startButton, pauseButton } = this.state;
     return (
-      <article className="timer">
+      <article className={style.container}>
         <h2>{name}</h2>
         <TimerDisplay currentTime={currentTime} />
         <Controls>
