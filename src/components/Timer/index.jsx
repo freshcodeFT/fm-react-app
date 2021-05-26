@@ -3,7 +3,6 @@ import Button from "../Button";
 import Controls from "./Controls";
 import TimerDisplay from "./TimerDisplay";
 import style from './Timer.module.css';
-console.log(style);
 
 class Timer extends Component {
   constructor(props) {
