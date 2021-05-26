@@ -38,6 +38,12 @@ function Timer(props) {
     setIsRunning(false);
     setDiff(Date.now() - startTime);
   };
+
+  const resume = () => {
+    setIsRunning(true);
+    setStartTime(Date.now() - diff);
+  };
+
   const reset = () => {
     setIsRunning(false);
     setStartTime(null);
@@ -52,11 +58,6 @@ function Timer(props) {
       isHidden: true,
       handler: pause,
     });
-  };
-  const resume = () => {
-    setIsRunning(true);
-    console.log(diff);
-    setStartTime(Date.now() - diff);
   };
 
   const [isRunning, setIsRunning] = useState(false);
@@ -76,19 +77,19 @@ function Timer(props) {
   useEffect(() => {
     if (isRunning) {
       setTimeout(tick, 10);
-    } else if (!isRunning && !startTime){
+    } else if (!isRunning && !startTime) {
       setCurrentTime(msToTime(0));
     }
-  }, [isRunning, startTime, currentTime])
+  }, [isRunning, startTime, currentTime]);
 
   useEffect(() => {
-    if(startTime){
-      if(!isRunning && diff){
+    if (startTime) {
+      if (!isRunning && diff) {
         setPauseButton({
           caption: "Resume",
           isHidden: false,
           handler: resume,
-        })
+        });
       } else {
         setPauseButton({
           ...pauseButton,
@@ -97,7 +98,7 @@ function Timer(props) {
         });
       }
     }
-  }, [isRunning, startTime, diff])
+  }, [isRunning, startTime, diff]);
 
   const { name = "Timer" } = props;
   return (
