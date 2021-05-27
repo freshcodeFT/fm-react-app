@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import style from "./SignUpForm.module.css";
 import FormInput from "./FormInput";
+import * as constants from '../../constants';
 
 const intialValues = {
   firstname: "",
@@ -26,17 +27,6 @@ class SignUpForm extends Component {
     this.setState({ [name]: value });
   };
 
-  validateName = (value) => {
-    return true;
-  };
-  validateEmail = (value) => {
-    return true;
-  };
-  validatePassword = (value) => {
-    const regex = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
-    return value.length === 0 || regex.test(value);
-  };
-
   render() {
     const { firstname, lastname, email, password } = this.state;
     return (
@@ -45,29 +35,29 @@ class SignUpForm extends Component {
           name="firstname"
           value={firstname}
           onChange={this.handleChange}
-          validationHandler={this.validateName}
+          validationRegex={constants.REGEX_NAME}
           placeholder="Введите имя"
         />
         <FormInput
           name="lastname"
           value={lastname}
+          validationRegex={constants.REGEX_NAME}
           onChange={this.handleChange}
-          validationHandler={this.validateName}
           placeholder="Введите фамилию"
         />
         <FormInput
           name="email"
           value={email}
+          validationRegex={constants.REGEX_EMAIL}
           onChange={this.handleChange}
-          validationHandler={this.validateEmail}
           placeholder="Введите email"
           type="email"
         />
         <FormInput
           name="password"
           value={password}
+          validationRegex={constants.REGEX_PASSWORD}
           onChange={this.handleChange}
-          validationHandler={this.validatePassword}
           placeholder="Введите пароль"
           type="password"
         />
