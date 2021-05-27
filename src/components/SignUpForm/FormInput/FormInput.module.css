@@ -11,6 +11,6 @@
 .invalidInput {
   border: 3px solid red;
 }
-.invalidInput:focus {
+.input:focus {
   outline: none;
 }
