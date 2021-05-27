@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import cx from "classnames";
 import style from "./SignUpForm.module.css";
+import FormInput from "./FormInput";
 
 const intialValues = {
   firstname: "",
@@ -30,6 +31,21 @@ class SignUpForm extends Component {
     this.setState({ [name]: value, [`is${name}Valid`]: !value.includes(" ") });
   };
 
+  firstnameChange(){
+
+  }
+
+  lastnameChange(){
+
+  }
+  emailChange(){
+
+  }
+  passwordChange({ target: { value } }){
+    const isValid = value.length >= 8;
+    this.setState({password: value, ispasswordValid: isValid});
+  }
+
   render() {
     const {
       firstname,
@@ -43,38 +59,10 @@ class SignUpForm extends Component {
     } = this.state;
     return (
       <form className={style.container} onSubmit={this.submitHandler}>
-        <input
-          value={firstname}
-          onChange={this.handleChange}
-          className={cx(style.input, {[style.invalidInput]: !isfirstnameValid}, {[style.validInput]: isfirstnameValid})}
-          type="text"
-          name="firstname"
-          placeholder="Введите имя"
-        />
-        <input
-          value={lastname}
-          onChange={this.handleChange}
-          className={cx(style.input, {[style.invalidInput]: !islastnameValid},  {[style.validInput]: islastnameValid})}
-          type="text"
-          name="lastname"
-          placeholder="Введите фамилию"
-        />
-        <input
-          value={email}
-          onChange={this.handleChange}
-          className={cx(style.input, {[style.invalidInput]: !isemailValid},  {[style.validInput]: isemailValid})}
-          type="email"
-          name="email"
-          placeholder="Введите email"
-        />
-        <input
-          value={password}
-          onChange={this.handleChange}
-          className={cx(style.input, {[style.invalidInput]: !ispasswordValid}, {[style.validInput]: ispasswordValid})}
-          type="password"
-          name="password"
-          placeholder="Введите пароль"
-        />
+        <FormInput value={firstname} onChange={} isValid={isfirstnameValid} placeholder="Введите имя"/>
+        <FormInput value={lastname} onChange={} isValid={islastnameValid} placeholder="Введите фамилию"/>
+        <FormInput value={email} onChange={} isValid={isemailValid} placeholder="Введите email" type="email"/>
+        <FormInput value={password} onChange={this.passwordChange} isValid={ispasswordValid} placeholder="Введите пароль" type="password"/>
         <input className={style.input} type="submit" />
       </form>
     );
@@ -82,3 +70,8 @@ class SignUpForm extends Component {
 }
 
 export default SignUpForm;
+
+/*
+  1. Написать функции-обработчики изменений имени, фамилии, email.
+  2. Добавить валидацию этих полей.
+*/
