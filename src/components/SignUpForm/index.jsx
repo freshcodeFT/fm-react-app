@@ -1,46 +1,61 @@
 import React, { Component } from "react";
 import style from "./SignUpForm.module.css";
 
+const intialValues = {
+  firstname: '',
+  lastname: '',
+  email: '',
+  password: '',
+}
+
 class SignUpForm extends Component {
+  constructor(props){
+    super(props);
+    this.state = {...intialValues}
+  }
+
   submitHandler = (event) => {
-    event.preventDefault();
-    console.log(event);
-    const {
-      target: {
-        elements: {
-          firstname: { value: firstname },
-          lastname: { value: lastname },
-          email: { value: email },
-          password: { value: password },
-        },
-      },
-    } = event;
     const {registerUser} = this.props;
-    registerUser({firstname, lastname, email, password});
+    event.preventDefault();
+    registerUser({...this.state});
+    this.setState({...intialValues});
   };
 
+  handleChange = ({target: {name, value}}) => {
+    this.setState({[name]: value});
+  }
+
   render() {
+    const {firstname, lastname, email, password} = this.state;
     return (
       <form className={style.container} onSubmit={this.submitHandler}>
         <input
+          value={firstname}
+          onChange={this.handleChange}
           className={style.input}
           type="text"
           name="firstname"
           placeholder="Введите имя"
         />
         <input
+          value={lastname}
+          onChange={this.handleChange}
           className={style.input}
           type="text"
           name="lastname"
           placeholder="Введите фамилию"
         />
         <input
+          value={email}
+          onChange={this.handleChange}
           className={style.input}
           type="email"
           name="email"
           placeholder="Введите email"
         />
         <input
+          value={password}
+          onChange={this.handleChange}
           className={style.input}
           type="password"
           name="password"
