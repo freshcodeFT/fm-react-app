@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
+
 
 function Aloha(props) {
   const [isGreeting, setIsGreeting] = useState(true);
   const switchState = () => setIsGreeting(!isGreeting);
-  const { name = "React" } = props;
+  const { name } = props;
   return (
     <>
       <h1 className="heading">
@@ -13,5 +15,9 @@ function Aloha(props) {
     </>
   );
 }
+
+Aloha.propTypes = {
+  name: PropTypes.string
+};
 
 export default Aloha;
