@@ -5,6 +5,7 @@ import UserList from "./components/UserList";
 import AlohaDashboard from "./components/AlohaDashboard";
 import Aloha from "./components/AlohaDashboard/Aloha";
 import UserCard from "./components/UserList/UserCard";
+import ResponsiveMediaWrapper from "./components/ResponsiveMediaWrapper";
 
 const usersDB = [
   {
@@ -34,14 +35,22 @@ const usersDB = [
 */
 
 function App(props) {
-  const user =  {
+  const user = {
     id: 4,
     firstname: "Mary",
     lastname: "Black",
   };
   return (
     <>
-     <UserCard user={user}/>
+      <UserCard user={user} />
+      <div style={{ width: "50%" }}>
+        <ResponsiveMediaWrapper>
+          <img
+            src="https://lumiere-a.akamaihd.net/v1/images/sa_pixar_virtualbg_coco_16x9_9ccd7110.jpeg"
+            alt="image"
+          />
+        </ResponsiveMediaWrapper>
+      </div>
     </>
   );
 }
