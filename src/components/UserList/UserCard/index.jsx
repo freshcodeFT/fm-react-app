@@ -1,19 +1,19 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-function UserCard(props) {
+function UserCard (props) {
   const {
     user: { id, firstname, lastname, isSelected },
     toggleUserSelection,
   } = props;
   const style = {
-    border: isSelected ? "5px solid black" : undefined,
-    color: isSelected ? "green" : "gray",
+    border: isSelected ? '5px solid black' : undefined,
+    color: isSelected ? 'green' : 'gray',
   };
   return (
     <article
       onClick={() => toggleUserSelection(id)}
       style={style}
-      className={`userCard ${isSelected ? "selected" : ""}`}
+      className={`userCard ${isSelected ? 'selected' : ''}`}
     >
       <p>ID: {id}</p>
       <h1>
@@ -27,8 +27,8 @@ UserCard.defaultProps = {
   toggleUserSelection: () => {},
   user: {
     id: null,
-    firstname: "Anon",
-    lastname: "Anon",
+    firstname: 'Anon',
+    lastname: 'Anon',
   },
 };
 

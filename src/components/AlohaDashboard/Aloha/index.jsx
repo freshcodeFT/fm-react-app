@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-
-function Aloha(props) {
+function Aloha (props) {
   const [isGreeting, setIsGreeting] = useState(true);
   const switchState = () => setIsGreeting(!isGreeting);
   const { name } = props;
   return (
     <>
-      <h1 className="heading">
-        {isGreeting ? "Hello" : "Goodbye"}, {name}
+      <h1 className='heading'>
+        {isGreeting ? 'Hello' : 'Goodbye'}, {name}
       </h1>
       <button onClick={switchState}>Switch</button>
     </>
@@ -17,7 +16,7 @@ function Aloha(props) {
 }
 
 Aloha.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
 };
 
 export default Aloha;
