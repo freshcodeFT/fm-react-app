@@ -7,6 +7,7 @@ import Aloha from "./components/AlohaDashboard/Aloha";
 import UserCard from "./components/UserList/UserCard";
 import ResponsiveMediaWrapper from "./components/ResponsiveMediaWrapper";
 import ArticleWrapper from "./components/ArticleWrapper";
+import Calendar from "./components/Calendar";
 
 const usersDB = [
   {
@@ -36,45 +37,9 @@ const usersDB = [
 */
 
 function App(props) {
-  const user = {
-    id: 4,
-    firstname: "Mary",
-    lastname: "Black",
-  };
   return (
     <>
-      <UserCard user={user} />
-      <div style={{ width: "50%" }}>
-        <ResponsiveMediaWrapper>
-          <img
-            src="https://lumiere-a.akamaihd.net/v1/images/sa_pixar_virtualbg_coco_16x9_9ccd7110.jpeg"
-            alt="image"
-          />
-        </ResponsiveMediaWrapper>
-        <ResponsiveMediaWrapper>
-          <img
-            src="https://img.freepik.com/free-vector/abstract-banner-background-with-red-shapes_1361-3348.jpg?size=626&ext=jpg&ga=GA1.2.1412648091.1622419200"
-            alt="image2"
-          />
-        </ResponsiveMediaWrapper>
-        <ArticleWrapper title="Test">
-          test
-          <span>some text</span>
-          <ul>
-            <li>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas,
-              labore.
-            </li>
-            <li>
-              Voluptates dolores quae ab inventore labore aut? Nemo, et at.
-            </li>
-            <li>
-              In totam repudiandae at maxime obcaecati labore optio? Tempore,
-              unde?
-            </li>
-          </ul>
-        </ArticleWrapper>
-      </div>
+      <Calendar />
     </>
   );
 }
