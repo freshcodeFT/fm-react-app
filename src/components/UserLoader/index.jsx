@@ -9,12 +9,12 @@ export default class UserLoader extends Component {
       users: [],
       isFetching: true,
       error: null,
+      currentPage: 1,
     };
   }
-
-  componentDidMount () {
-    // https://randomuser.me/api/?page=3&results=10&seed=fm2021-1
-    getUsers()
+  load = () => {
+    const { currentPage } = this.state;
+    getUsers({page: currentPage})
       .then(data => {
         this.setState({
           users: data.results,
@@ -22,7 +22,23 @@ export default class UserLoader extends Component {
       })
       .catch(error => this.setState({ error }))
       .finally(() => this.setState({ isFetching: false }));
+  };
+
+  componentDidMount () {
+    this.load();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { currentPage } = this.state;
+    if(prevState.currentPage !== currentPage) {
+      this.load();
+    }
+  }
+  /*
+    TASK
+    Реализовать функционал кнопки Prev page
+  */
+  nextPage = () => this.setState({ currentPage: this.state.currentPage + 1 });
 
   render () {
     const { users, isFetching, error } = this.state;
@@ -33,6 +49,8 @@ export default class UserLoader extends Component {
     return (
       <div>
         <h1>USER LIST</h1>
+        <button>Prev page</button>
+        <button onClick={this.nextPage}>Next page</button>
         <ul>
           {users.map(user => (
             <li key={user.login.uuid}>{JSON.stringify(user)}</li>
