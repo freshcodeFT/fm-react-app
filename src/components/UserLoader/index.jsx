@@ -14,7 +14,7 @@ export default class UserLoader extends Component {
   }
   load = () => {
     const { currentPage } = this.state;
-    getUsers({page: currentPage})
+    getUsers({ page: currentPage })
       .then(data => {
         this.setState({
           users: data.results,
@@ -28,9 +28,9 @@ export default class UserLoader extends Component {
     this.load();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate (prevProps, prevState) {
     const { currentPage } = this.state;
-    if(prevState.currentPage !== currentPage) {
+    if (prevState.currentPage !== currentPage) {
       this.load();
     }
   }
@@ -38,6 +38,12 @@ export default class UserLoader extends Component {
     TASK
     Реализовать функционал кнопки Prev page
   */
+  prevPage = () => {
+    const { currentPage } = this.state;
+    if (currentPage > 1) {
+      this.setState({ currentPage: this.state.currentPage - 1 });
+    }
+  };
   nextPage = () => this.setState({ currentPage: this.state.currentPage + 1 });
 
   render () {
@@ -49,7 +55,7 @@ export default class UserLoader extends Component {
     return (
       <div>
         <h1>USER LIST</h1>
-        <button>Prev page</button>
+        <button onClick={this.prevPage}>Prev page</button>
         <button onClick={this.nextPage}>Next page</button>
         <ul>
           {users.map(user => (
