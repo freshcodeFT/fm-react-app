@@ -4,27 +4,12 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import UserLoader from './components/UserLoader';
 import WindowSizes from './components/WindowSizes';
 import CounterPage from './pages/CounterPage';
+import Header from './components/Header';
 
 function App (props) {
   return (
     <BrowserRouter>
-      <nav>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/contacts'>Contacts</Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-          <li>
-            <Link to='/counter'>Counter</Link>
-          </li>
-        </ul>
-      </nav>
-
+      <Header />
       <Switch>
         <Route exact path='/'>
           <Home />
