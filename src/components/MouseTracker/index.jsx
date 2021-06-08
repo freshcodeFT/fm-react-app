@@ -23,6 +23,7 @@ function MouseTracker () {
     </div>
   );
 }
+
 /*
 class MouseTracker extends Component {
   constructor (props) {
