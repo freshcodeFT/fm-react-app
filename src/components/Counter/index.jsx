@@ -1,11 +1,91 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component, PureComponent } from 'react';
 import Button from '../Button';
 import ControlledNumInput from '../ControlledNumInput';
 
 import style from './Counter.module.sass';
 
+class Counter extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      counter: 0,
+      isIncrement: true,
+      isAutoClick: false,
+      delay: 1000,
+      clicksPerSecond: 1,
+      timer: null,
+    };
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return this.props.step === nextProps.step;
+  }
+
+  tick = () => {
+    if (!this.state.isAutoClick) return;
+    setTimeout(this.tick, this.state.delay);
+    this.handleCount();
+  };
+
+  toggleMode = () => this.setState({ isIncrement: !this.state.isIncrement });
+  toggleAutoClick = () => {
+    const { isAutoClick } = this.state;
+    if (!isAutoClick) setTimeout(this.tick, this.state.delay);
+    this.setState({ isAutoClick: !isAutoClick });
+  };
+
+  handleCount = () => {
+    const { isIncrement, counter } = this.state;
+    const { step } = this.props;
+    this.setState({
+      counter: isIncrement ? counter + step : counter - step,
+    });
+  };
+
+  handleChangeDelay = newValue => {
+    this.setState({
+      clicksPerSecond: newValue,
+      delay: 1000 / newValue,
+    });
+  };
+
+  render () {
+    console.log('render');
+    const {
+      isIncrement,
+      counter,
+      clicksPerSecond,
+      handleChangeDelay,
+      isAutoClick,
+    } = this.state;
+    const countButtonCaption = isIncrement ? 'Increment' : 'Decrement';
+    return (
+      <>
+        <div className={style.container}>
+          <div>Counter:{counter}</div>
+          <ControlledNumInput
+            caption='Количество нажатий в секунду (Press Enter)'
+            value={clicksPerSecond}
+            setValue={handleChangeDelay}
+            min={1}
+            max={1000}
+          />
+          <p>Auto click mode: {isAutoClick ? 'Enabled' : 'Disabled'}</p>
+          <div className={style.controls}>
+            <Button onClick={this.toggleMode} caption={'Change mode'} />
+            <Button onClick={this.handleCount} caption={countButtonCaption} />
+            <Button onClick={this.toggleAutoClick} caption='Auto click' />
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+/*
 function Counter (props) {
   const { step } = props;
+  console.log('render');
 
   const toggleMode = () => setIsIncrement(!isIncrement);
   const toggleAutoClick = () => setIsAutoClick(!isAutoClick);
@@ -56,5 +136,5 @@ function Counter (props) {
       </div>
     </>
   );
-}
+}*/
 export default Counter;
