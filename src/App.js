@@ -9,6 +9,7 @@ import UserLoader from './components/UserLoader';
 import PhonesLoader from './components/PhonesLoader';
 import MouseTrackerPage from './pages/MouseTrackerPage';
 import Tree from './components/Tree';
+import Home from './pages/Home';
 import { UserContext, ThemeContext } from './contexts';
 
 import CONSTANTS from './constants';
@@ -49,8 +50,6 @@ function App (props) {
     </BrowserRouter>
   );
 }
-
-const Home = () => <div>HOME</div>;
 const About = props => {
   console.log('ABOUT: ', props);
 
